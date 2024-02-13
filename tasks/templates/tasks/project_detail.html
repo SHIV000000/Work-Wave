@@ -1,0 +1,79 @@
+<!-- tasks/templates/tasks/project_detail.html -->
+
+{% extends 'base.html' %} {% block title %}{{ project.name }} - WorkWave
+{%endblock %} {% block content %}
+
+<section class="bg-white">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2
+      class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl"
+    >
+      {{ project.name }}
+    </h2>
+
+    <dl>
+      <dt class="mb-2 font-semibold leading-none text-gray-900">Details</dt>
+      <dd class="font-light text-gray-500 sm:mb-2">
+        {{ project.description }}
+      </dd>
+    </dl>
+
+    <dl class="mb-3">
+      <dt class="mb-2 font-semibold leading-none text-gray-900">Due Tasks</dt>
+      <ul class="list-group">
+        {% for task in due_tasks %}
+        <li class="flex w-full bg-gray-200 py-2 px-4 rounded-lg font-semibold">
+          {{ task.name }} - {{ task.due_date }}
+        </li>
+        {% endfor %}
+      </ul>
+    </dl>
+
+    <dl class="mb-3">
+      <dt class="mb-2 font-semibold leading-none text-gray-900">
+        Upcoming Tasks
+      </dt>
+      <ul class="list-group">
+        {% for task in upcoming_tasks %}
+        <li class="flex w-full bg-gray-200 py-2 px-4 rounded-lg font-semibold">
+          {{ task.name }} - {{ task.due_date }}
+        </li>
+        {% endfor %}
+      </ul>
+    </dl>
+
+    <dl>
+      <dt class="mb-2 font-semibold leading-none text-gray-900">All Tasks</dt>
+      <ul class="space-y-2">
+        {% for task in tasks %}
+        <li class="flex w-full bg-gray-200 py-2 px-4 rounded-lg font-semibold">
+          {{ task.name }} - {{ task.status }} {% if task.assigned_to %}
+          (Assigned to: {{ task.assigned_to.username }}) {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </dl>
+
+    <div class="flex items-center space-x-4 mt-2">
+      <a
+        href="{% url 'create_task' project.id %}"
+        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      >
+        Create Task
+      </a>
+      <a
+        href="{% url 'project_update' project.id %}"
+        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      >
+        Update Project
+      </a>
+      <a
+        href="{% url 'project_delete' project.id %}"
+        class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      >
+        Delete Project
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

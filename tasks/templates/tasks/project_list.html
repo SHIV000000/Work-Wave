@@ -1,0 +1,28 @@
+<!-- tasks/templates/tasks/project_list.html -->
+
+{% extends 'base.html' %} {% block title %}Projects - WorkWave{% endblock %}
+{%block content %}
+
+<ul class="flex flex-col items-center justify-center space-y-4">
+  {% for project in projects %}
+
+  <a
+    href="{% url 'project_detail' project.id %}"
+    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 w-full"
+  >
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+      {{ project.name }}
+    </h5>
+    <p class="font-normal text-gray-700">{{ project.description }}</p>
+  </a>
+
+  {% endfor %}
+
+  <a
+    class="py-2 px-5 bg-blue-600 text-white rounded-lg mt-6"
+    href="{% url 'project_create' %}"
+    >Create New Project</a
+  >
+
+  {% endblock %}
+</ul>

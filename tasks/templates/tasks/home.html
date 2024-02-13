@@ -1,0 +1,23 @@
+<!-- tasks/templates/tasks/home.html -->
+
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col items-center justify-center space-y-4">
+  <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900"> Welcome to WorkWave</h1>
+  <p>Where Tasks Breaks Likes Tides Your central hub for task management.</p>
+
+  <div class="mt-4">
+    <h2 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900">Stay Organized</h2>
+    <h2>
+      Keep track of your tasks, set deadlines, and collaborate seamlessly with
+      WorkWave.
+    </h2>
+    <h2 class= "text-center" >Explore the features to enhance your productivity!</h2>
+  </div>
+  <a
+    class="py-2 px-5 bg-blue-600 text-white rounded-lg mt-6"
+    href="{% url 'project_create' %}"
+    >Create Project</a
+  >
+</div>
+
+{% endblock %}

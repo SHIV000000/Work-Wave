@@ -1,0 +1,25 @@
+<!-- tasks/templates/tasks/task_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Confirm Delete</h2>
+            <hr>
+
+            <p>Are you sure you want to delete the task "{{ task.name }}"?</p>
+
+            <form method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Yes, Delete</button>
+              <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

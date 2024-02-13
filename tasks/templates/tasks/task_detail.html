@@ -1,0 +1,25 @@
+<!-- tasks/templates/tasks/task_detail.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ task.name }}</h1>
+  <p>{{ task.description }}</p>
+  <p>Due Date: {{ task.due_date }}</p>
+  <p>Status: {{ task.status }}</p>
+  <p>Priority: {{ task.priority }}</p>
+  <p>Estimated Hours: {{ task.estimated_hours }}</p>
+  <p>Project: {{ task.project.name }}</p>
+  <p>Assigned To: {{ task.assigned_to.username }}</p>
+  <p>Time Spent: {{ task.time_spent }}</p>
+  <p>Category: {{ task.category.name }}</p>
+
+  <h2>Comments</h2>
+  {% for comment in task.comments.all %}
+    <p>{{ comment.user.username }} ({{ comment.created_at }}): {{ comment.comment }}</p>
+  {% endfor %}
+
+  <h2>Attachments</h2>
+  {% for attachment in task.attachments.all %}
+    <p>{{ attachment.file.url }}</p>
+  {% endfor %}
+{% endblock %}
